@@ -1,0 +1,445 @@
+{
+  "Audio|2022-07-16T23:20:43.472Z|95741": {
+    "ƒ.Audio": {
+      "url": "Sounds\\hit.mp3",
+      "idResource": "Audio|2022-07-16T23:20:43.472Z|95741",
+      "name": "Sounds\\hit.mp3",
+      "type": "Audio"
+    }
+  },
+  "Audio|2022-07-16T23:21:32.730Z|14535": {
+    "ƒ.Audio": {
+      "url": "Sounds\\jump.mp3",
+      "idResource": "Audio|2022-07-16T23:21:32.730Z|14535",
+      "name": "Sounds\\jump.mp3",
+      "type": "Audio"
+    }
+  },
+  "Audio|2022-07-16T23:21:40.666Z|10542": {
+    "ƒ.Audio": {
+      "url": "Sounds\\theme_play.mp3",
+      "idResource": "Audio|2022-07-16T23:21:40.666Z|10542",
+      "name": "Sounds\\theme_play.mp3",
+      "type": "Audio"
+    }
+  },
+  "Audio|2022-07-16T23:21:44.975Z|72049": {
+    "ƒ.Audio": {
+      "url": "Sounds\\theme_start.mp3",
+      "idResource": "Audio|2022-07-16T23:21:44.975Z|72049",
+      "name": "Sounds\\theme_start.mp3",
+      "type": "Audio"
+    }
+  },
+  "Audio|2022-07-16T23:21:50.614Z|82827": {
+    "ƒ.Audio": {
+      "url": "Sounds\\wohoho.mp3",
+      "idResource": "Audio|2022-07-16T23:21:50.614Z|82827",
+      "name": "Sounds\\wohoho.mp3",
+      "type": "Audio"
+    }
+  },
+  "Audio|2022-07-16T23:21:56.191Z|00639": {
+    "ƒ.Audio": {
+      "url": "Sounds\\woo.mp3",
+      "idResource": "Audio|2022-07-16T23:21:56.191Z|00639",
+      "name": "Sounds\\woo.mp3",
+      "type": "Audio"
+    }
+  },
+  "Graph|2022-07-16T22:47:28.630Z|01158": {
+    "ƒ.Graph": {
+      "name": "game",
+      "active": true,
+      "components": {},
+      "children": [
+        {
+          "ƒ.Node": {
+            "name": "levels",
+            "active": true,
+            "components": {},
+            "children": [
+              {
+                "ƒ.Node": {
+                  "name": "run",
+                  "active": true,
+                  "components": {},
+                  "children": [
+                    {
+                      "ƒ.Node": {
+                        "name": "startFloor",
+                        "active": true,
+                        "components": {
+                          "ComponentMesh": [
+                            {
+                              "ƒ.ComponentMesh": {
+                                "idMesh": "MeshCube|2022-07-16T23:07:51.160Z|30797",
+                                "pivot": {
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[15, 0.5, 15]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentMaterial": [
+                            {
+                              "ƒ.ComponentMaterial": {
+                                "sortForAlpha": false,
+                                "clrPrimary": "[1, 1, 1, 1]",
+                                "clrSecondary": "[1, 1, 1, 1]",
+                                "pivot": {
+                                  "translation": "[0, 0]",
+                                  "rotation": 0,
+                                  "scaling": "[1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                },
+                                "idMaterial": "Material|2022-07-17T00:51:20.591Z|59839"
+                              }
+                            }
+                          ],
+                          "ComponentTransform": [
+                            {
+                              "ƒ.ComponentTransform": {
+                                "local": {
+                                  "translation": "[0, 0, 0]",
+                                  "rotation": "[0, 0, 0]",
+                                  "scaling": "[1, 1, 1]"
+                                },
+                                "Component": {
+                                  "active": true
+                                }
+                              }
+                            }
+                          ],
+                          "ComponentRigidbody": []
+                        },
+                        "children": []
+                      }
+                    },
+                    {
+                      "ƒ.Node": {
+                        "name": "circles",
+                        "active": true,
+                        "components": {},
+                        "children": []
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "light",
+                  "active": true,
+                  "components": {
+                    "ComponentLight": [
+                      {
+                        "ƒ.ComponentLight": {
+                          "pivot": {
+                            "translation": "[0, 0, 0]",
+                            "rotation": "[0, 0, 0]",
+                            "scaling": "[50, 50, 50]"
+                          },
+                          "light": {
+                            "ƒ.LightAmbient": {
+                              "color": "[1, 1, 0.9803921568627451, 1]"
+                            }
+                          },
+                          "Component": {
+                            "active": true
+                          }
+                        }
+                      }
+                    ],
+                    "ComponentMesh": []
+                  },
+                  "children": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ƒ.Node": {
+            "name": "avatar",
+            "active": true,
+            "components": {},
+            "children": [
+              {
+                "ƒ.Node": {
+                  "name": "camera",
+                  "active": true,
+                  "components": {
+                    "ComponentCamera": [
+                      {
+                        "ƒ.ComponentCamera": {
+                          "backgroundColor": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 1
+                          },
+                          "backgroundEnabled": true,
+                          "projection": "central",
+                          "fieldOfView": 45,
+                          "direction": 2,
+                          "aspect": 1.591549295774648,
+                          "pivot": {
+                            "translation": "[0, 0, 0]",
+                            "rotation": "[0, 0, 0]",
+                            "scaling": "[1, 1, 1]"
+                          },
+                          "Component": {
+                            "active": true
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "mesh",
+                  "active": true,
+                  "components": {
+                    "ComponentMesh": [
+                      {
+                        "ƒ.ComponentMesh": {
+                          "idMesh": "MeshObj|2022-07-17T00:45:25.239Z|57177",
+                          "pivot": {
+                            "translation": "[0, 0, 0]",
+                            "rotation": "[0, 0, 0]",
+                            "scaling": "[0.009999999776482582, 0.009999999776482582, 0.009999999776482582]"
+                          },
+                          "Component": {
+                            "active": true
+                          }
+                        }
+                      }
+                    ],
+                    "ComponentMaterial": [
+                      {
+                        "ƒ.ComponentMaterial": {
+                          "sortForAlpha": false,
+                          "clrPrimary": "[1, 1, 1, 1]",
+                          "clrSecondary": "[1, 1, 1, 1]",
+                          "pivot": {
+                            "translation": "[0, 0]",
+                            "rotation": 0,
+                            "scaling": "[1, 1]"
+                          },
+                          "Component": {
+                            "active": true
+                          },
+                          "idMaterial": "Material|2022-07-17T01:10:05.499Z|78974"
+                        }
+                      }
+                    ],
+                    "ComponentTransform": [
+                      {
+                        "ƒ.ComponentTransform": {
+                          "local": {
+                            "translation": "[0, 3, 0]",
+                            "rotation": "[0, 0, 0]",
+                            "scaling": "[1, 1, 1]"
+                          },
+                          "Component": {
+                            "active": true
+                          }
+                        }
+                      }
+                    ],
+                    "ComponentRigidbody": []
+                  },
+                  "children": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "ƒ.Node": {
+            "name": "sounds",
+            "active": true,
+            "components": {},
+            "children": [
+              {
+                "ƒ.Node": {
+                  "name": "hit",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-16T23:20:43.472Z|95741",
+                          "playing": false,
+                          "loop": false,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "jump",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-16T23:21:32.730Z|14535",
+                          "playing": false,
+                          "loop": false,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "theme_play",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-16T23:21:40.666Z|10542",
+                          "playing": false,
+                          "loop": true,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "theme_start",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-16T23:21:44.975Z|72049",
+                          "playing": false,
+                          "loop": true,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "woohoho",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-16T23:21:50.614Z|82827",
+                          "playing": false,
+                          "loop": false,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "wooo",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-16T23:21:56.191Z|00639",
+                          "playing": false,
+                          "loop": false,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "idResource": "Graph|2022-07-16T22:47:28.630Z|01158",
+      "type": "Graph"
+    }
+  },
+  "MeshCube|2022-07-16T23:07:51.160Z|30797": {
+    "ƒ.MeshCube": {
+      "idResource": "MeshCube|2022-07-16T23:07:51.160Z|30797",
+      "name": "MeshCube",
+      "type": "MeshCube"
+    }
+  },
+  "MeshObj|2022-07-17T00:45:25.239Z|57177": {
+    "ƒ.MeshObj": {
+      "idResource": "MeshObj|2022-07-17T00:45:25.239Z|57177",
+      "name": "Assets\\bean.obj",
+      "type": "MeshObj",
+      "url": "Assets\\bean.obj"
+    }
+  },
+  "Material|2022-07-17T00:51:20.591Z|59839": {
+    "ƒ.Material": {
+      "name": "floor",
+      "idResource": "Material|2022-07-17T00:51:20.591Z|59839",
+      "shader": "ShaderFlat",
+      "coat": {
+        "ƒ.CoatRemissive": {
+          "color": "[0.9607843137254902, 0.7529411764705882, 0.1803921568627451, 1]",
+          "diffuse": 1,
+          "specular": 0
+        }
+      }
+    }
+  },
+  "Material|2022-07-17T01:10:05.499Z|78974": {
+    "ƒ.Material": {
+      "name": "shaderAvatar",
+      "idResource": "Material|2022-07-17T01:10:05.499Z|78974",
+      "shader": "ShaderFlat",
+      "coat": {
+        "ƒ.CoatRemissive": {
+          "color": "[0.8117647058823529, 0.1607843137254902, 0.8588235294117647, 1]",
+          "diffuse": 1,
+          "specular": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+html, body {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Changa One", cursive;
+}
+
+#dialog { 
+  text-align: center; 
+  height: 100%;
+  background: linear-gradient(155deg, #dff2ff 25%, transparent 25%) -50px 0,
+    linear-gradient(205deg, #dff2ff 25%, transparent 25%) -50px 0,
+    linear-gradient(335deg, #dff2ff 25%, transparent 25%),
+    linear-gradient(25deg, #dff2ff 25%, transparent 25%);
+    background-size: 200px 200px;
+    background-color: #d2dbff;
+}
+
+h1 {
+  font-family: "Changa One", cursive;
+  text-shadow: 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.6);
+  font-size: 5rem;
+  margin: 0;
+  padding: 2rem 0 3rem 0;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 2rem;
+}
+
+button {
+  margin: 1.5rem;
+  padding: 3rem;
+  border: 0.5rem solid white;
+  border-radius: 0.5em;
+  text-shadow: 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0.7rem 0.7rem 0 black;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 25rem;
+  margin-right: 5rem;
+}
+
+button#run:before {
+  content: "Run";
+  z-index: 1;
+  position: absolute;
+  padding-left: 4rem;
+}
+
+button#survive:before {
+  content: "Survive";
+  z-index: 1;
+  position: absolute;
+}
+
+button:after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: 0;
+  background: linear-gradient(155deg, #fa35a3 25%, transparent 25%) -50px 0,
+    linear-gradient(205deg, #fa35a3 25%, transparent 25%) -50px 0,
+    linear-gradient(335deg, #fa35a3 25%, transparent 25%),
+    linear-gradient(25deg, #fa35a3 25%, transparent 25%);
+  background-size: 100px 100px;
+  background-color: #fb79af;
+  transform: rotate(30deg);
+}
+
+button:hover {
+  box-shadow: 0 0 0 0.5rem yellow, 1.2rem 1.2rem 0 black;
+
+  animation-duration: 0.2s;
+  animation-name: bounce;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  cursor: pointer;
+}
+
+button#run:hover + .run,
+button#survive:hover + .survive {
+  display: block;
+}
+
+.run, .survive {
+  display: none;
+}
+
+
+@keyframes bounce {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.left {
+  align-self: center;
+}
+
+.flex {
+  display: flex;
+  align-content: space-between;
+}
+
+canvas.fullscreen { 
+  width: 100vw; 
+  height: 100vh; 
+}
