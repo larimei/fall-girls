@@ -2,9 +2,9 @@
 
 Lara Meister, 263235, SoSe2022, Medieninformatik, Semester 6
 
-[Code der Endabgabe](https://jirkadelloro.github.io/FUDGE)
-[Designdokument](https://jirkadelloro.github.io/FUDGE)
-[Spiel](https://jirkadelloro.github.io/FUDGE)
+[Code der Endabgabe](https://github.com/larimei/fall-girls)   
+[Designdokument](https://github.com/larimei/fall-girls/blob/main/AbgabeKonzeptAnfang.pdf)    
+[Spiel](https://larimei.github.io/fall-girls/index.html)    
 
 
 
@@ -14,20 +14,20 @@ Repository for the module "Prototyping interactive media-applications and games"
 © Prof. Dipl.-Ing. Jirka R. Dell'Oro-Friedl, HFU
 | Nr | Criterion       | Explanation                                                                                                              |
 |---:|-------------------|---------------------------------------------------------------------------------------------------------------------|
-|  0 | Units and Positions | Where is 0, what is 1? Explain your setup of coordinate systems of the entities.                                    |
-|  1 | Hierarchy         | Explain the setup of the graphs and the advantages you gain by it.                                                  |
-|  2 | Editor            | Use the visual editor and explain which parts are better done by coding and why.                                    |
-|  3 | Scriptcomponents  | Use scriptcomponents and explain if they were useful in your context or not and why.                                |
-|  4 | Extend            | Derive classes from FudgeCore and explain if that was useful in your context or not and why.                        |
-|  5 | Sound             | Use sounds and explain your choice of sounds and placement in respect to the user's perception.                     |
-|  6 | VUI               | Create a virtual user interface using the interface controller and mutables. Explain the interface.                 |
-|  7 | Event-System      | Use the event system to send messages through graphs and explain if that was useful in your context or not and why. |
-|  8 | External Data     | Create a configuration file your application loads and adjusts to the content. Explain your choice of parameters.   |
-|  9 | Light             | Explain your choice of lights in your graphs.                                                                       |
-|  A | Physics           | Add rigidbody components and work with collisions (1) and/or forces and torques (1) and/or joints (1)               |
-|  B | Net               | Add multiplayer functionality via network (3)                                                                       |
-|  C | State Machines    | Create autonomous entities using the StateMachine (1) and/or ComponentStateMachine (1) defined in FudgeAid          |
-|  D | Animation         | Animate using the animation system of FudgeCore (1) and/or Sprites (1) as defined in FudgeAid                           |
+|  0 | Units and Positions | 1 Unit = 1 meter; Avatar = ca. 1m; Runlevel width = 15 meter; survivelevel = 15 meter * 15 meter                             |
+|  1 | Hierarchy         | game (levels (survive (surviveMeshes), light, surroundLight,run (runMeshes)), avatar (camera), sounds (allSounds))                                   |
+|  2 | Editor            | Building the world, Rigidbodyies, Mehses, Material -> Editor (good to see immidiately how it looks); Functions like shooting, animation, scripts/function for big amount of mehses -> scripting (when dynamically added or when i needed functions which arent available in editor)                        |
+|  3 | Scriptcomponents  | Rotating oles and cylinders -> useful because they can depend on different attributes                  |
+|  4 | Extend            | Shootings -> Node,  CannonStateMashine -> ComponentStateMashine, some Scriptcomponents,    GameState -> Mutable                |
+|  5 | Sound             | theme -> ambient music/theme, hit -> when avatar collides, jump -> for jumping, win and loose, shoot -> when cannon shoots                   |
+|  6 | VUI               | VUI shows the time: Run ->  how long user needs to finish level, Survive -> how much time the user needs to survive               |
+|  7 | Event-System      | standardevents -> interactiveViewportStarted, etc,, HTMLEvents -> click, a lot of triggerEvents -> reach goal, falls, for CannonStateMashine, colliderEnterEvents -> for hit sounds
+|  8 | External Data     | config file for the time the user needs to survive and the speed for the avatar   |
+|  9 | Light             | blue AmbientLight -> for sky, yellow directional light -> for sun                                                                    |
+|  A | Physics           | Rigidbody for almost everything, forces for jump and shooting of the cannon, universaljoint for last obstacle               |
+|  B | Net               | -                                                                       |
+|  C | State Machines    | StateMashine for Cannon to get activated when avatar is near and to get aggressive when avatar is very near       |
+|  D | Animation         | cannon is animated to swing around                   |
 
 The criteria 0 to 9 are mandatory and yield 1 point each. Choose from A to D for additional points as noted in brackets. An aspect of your application may not fullfill multiple criteria.  
 | Points | 9   | 10  | 11  | 12  |
