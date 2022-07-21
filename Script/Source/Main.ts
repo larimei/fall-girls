@@ -26,7 +26,7 @@ namespace Script {
     PLAY,
     OVER,
     WIN,
-    LOOSE
+    LOOSE,
   }
 
   export let state: Game;
@@ -52,6 +52,9 @@ namespace Script {
   let config: Config;
   let jumpSound: ƒ.ComponentAudio;
   let winSound: ƒ.ComponentAudio;
+  let winTheme: ƒ.ComponentAudio;
+  let looseTheme: ƒ.ComponentAudio;
+  let theme: ƒ.ComponentAudio;
 
   async function start(_event: CustomEvent): Promise<void> {
     viewport = _event.detail;
@@ -94,15 +97,25 @@ namespace Script {
     initAnim();
     document.body.addEventListener("change", initAnim);
 
-    let theme = graph
+    theme = graph
       .getChildrenByName("sounds")[0]
-      .getChildrenByName("theme_play")[0];
-    let cmpAudio: ƒ.ComponentAudio = theme.getComponent(ƒ.ComponentAudio);
-    cmpAudio.play(true);
+      .getChildrenByName("theme_play")[0]
+      .getComponent(ƒ.ComponentAudio);
+    theme.play(true);
 
     winSound = graph
       .getChildrenByName("sounds")[0]
       .getChildrenByName("woohoho")[0]
+      .getComponent(ƒ.ComponentAudio);
+
+    winTheme = graph
+      .getChildrenByName("sounds")[0]
+      .getChildrenByName("win_theme")[0]
+      .getComponent(ƒ.ComponentAudio);
+
+    looseTheme = graph
+      .getChildrenByName("sounds")[0]
+      .getChildrenByName("loose_theme")[0]
       .getComponent(ƒ.ComponentAudio);
 
     let hitSound = graph
@@ -113,7 +126,39 @@ namespace Script {
     collider.addEventListener(
       ƒ.EVENT_PHYSICS.COLLISION_ENTER,
       (_event: ƒ.EventPhysics) => {
-        hitSound.play(true);
+        if (
+          _event.cmpRigidbody.node.name == "shoot" ||
+          _event.cmpRigidbody.node.name == "child"
+        ) {
+          hitSound.play(true);
+        }
+      }
+    );
+
+    let winTrigger = graph
+      .getChildrenByName("levels")[0]
+      .getChildrenByName("run")[0]
+      .getChildrenByName("goalTrigger")[0]
+      .getComponent(ƒ.ComponentRigidbody);
+
+    winTrigger.addEventListener(
+      ƒ.EVENT_PHYSICS.TRIGGER_ENTER,
+      (_event: ƒ.EventPhysics) => {
+        theme.play(false);
+        showWinScreen();
+      }
+    );
+
+    let looseTrigger = graph
+      .getChildrenByName("levels")[0]
+      .getChildrenByName("fallTrigger")[0]
+      .getComponent(ƒ.ComponentRigidbody);
+
+    looseTrigger.addEventListener(
+      ƒ.EVENT_PHYSICS.TRIGGER_ENTER,
+      (_event: ƒ.EventPhysics) => {
+        theme.play(false);
+        showLooseScreen();
       }
     );
   }
@@ -124,7 +169,10 @@ namespace Script {
     if (state == Game.OVER || state == Game.WIN || state == Game.LOOSE) return;
 
     time += ƒ.Loop.timeFrameGame / 1000;
-    if (time > config.surviveTime && gameType == "survive") showWinScreen();
+    if (time > config.surviveTime && gameType == "survive") {
+      theme.play(false);
+      showWinScreen();
+    }
 
     gameState.time = time.toFixed(0);
     controlWalk();
@@ -196,11 +244,13 @@ namespace Script {
     console.log("You are too damn good at this game!!!!");
     state = Game.WIN;
     winSound.play(true);
+    gameState.winGame(winTheme);
   }
 
   function showLooseScreen() {
     console.log("You are too damn bad at this game!!!!");
     state = Game.LOOSE;
+    gameState.looseGame(looseTheme);
   }
 
   function removeOtherLevel() {

@@ -197,6 +197,22 @@
       "type": "MeshPyramid"
     }
   },
+  "Audio|2022-07-21T20:13:37.865Z|73774": {
+    "ƒ.Audio": {
+      "url": "Sounds\\win.mp3",
+      "idResource": "Audio|2022-07-21T20:13:37.865Z|73774",
+      "name": "Sounds\\win.mp3",
+      "type": "Audio"
+    }
+  },
+  "Audio|2022-07-21T20:13:48.265Z|68950": {
+    "ƒ.Audio": {
+      "url": "Sounds\\loose.mp3",
+      "idResource": "Audio|2022-07-21T20:13:48.265Z|68950",
+      "name": "Sounds\\loose.mp3",
+      "type": "Audio"
+    }
+  },
   "Graph|2022-07-16T22:47:28.630Z|01158": {
     "ƒ.Graph": {
       "name": "game",
@@ -1449,7 +1465,7 @@
                                   {
                                     "ƒ.ComponentTransform": {
                                       "local": {
-                                        "translation": "[0, 0, 0]",
+                                        "translation": "[-1, 0, 0]",
                                         "rotation": "[0, 0, 0]",
                                         "scaling": "[1, 1, 1]"
                                       },
@@ -1497,7 +1513,7 @@
                                   {
                                     "ƒ.ComponentTransform": {
                                       "local": {
-                                        "translation": "[0, 0, 0]",
+                                        "translation": "[2, 0, 0]",
                                         "rotation": "[0, 0, 0]",
                                         "scaling": "[1, 1, 1]"
                                       },
@@ -2101,8 +2117,8 @@
                                 "minRotorSecond": 0,
                                 "rotorSpeedSecond": 0,
                                 "rotorTorqueSecond": 0,
-                                "firstAxis": "[1, 0, 0]",
-                                "secondAxis": "[0, 0, 1]",
+                                "firstAxis": "[0, 0, 0]",
+                                "secondAxis": "[0, 0, 0]",
                                 "Joint": {
                                   "nameChildToConnect": "child",
                                   "internalCollision": false,
@@ -2368,7 +2384,7 @@
                       {
                         "ƒ.ComponentTransform": {
                           "local": {
-                            "translation": "[0, 0, 0]",
+                            "translation": "[0, -8, 0]",
                             "rotation": "[0, 0, 0]",
                             "scaling": "[1, 1, 1]"
                           },
@@ -2393,7 +2409,7 @@
                           "isTrigger": true,
                           "id": 12,
                           "pivot": {
-                            "translation": "[0, -7, 34]",
+                            "translation": "[0, 0, 34]",
                             "rotation": "[0, 0, 0]",
                             "scaling": "[40, 1, 108]"
                           },
@@ -2653,6 +2669,46 @@
                         "ƒ.ComponentAudio": {
                           "active": true,
                           "idResource": "Audio|2022-07-16T23:20:43.472Z|95741",
+                          "playing": false,
+                          "loop": false,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "win_theme",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-21T20:13:37.865Z|73774",
+                          "playing": false,
+                          "loop": false,
+                          "volume": 1
+                        }
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              },
+              {
+                "ƒ.Node": {
+                  "name": "loose_theme",
+                  "active": true,
+                  "components": {
+                    "ComponentAudio": [
+                      {
+                        "ƒ.ComponentAudio": {
+                          "active": true,
+                          "idResource": "Audio|2022-07-21T20:13:48.265Z|68950",
                           "playing": false,
                           "loop": false,
                           "volume": 1

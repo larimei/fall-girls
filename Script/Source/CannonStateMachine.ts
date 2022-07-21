@@ -59,7 +59,7 @@ namespace Script {
     private static async shoot(_machine: CannonStateMachine): Promise<void> {
       time += ƒ.Loop.timeFrameGame / 1000;
 
-      if (time > 1) {
+      if (time > 1 && state == Game.PLAY) {
         let shoot = new CannonShoot("Shoot", cannon.mtxLocal.translation);
         graph.addChild(shoot);
         let direction: ƒ.Vector3 = cannon.mtxLocal.getY();
@@ -76,7 +76,7 @@ namespace Script {
     private static async shootAgressive(_machine: CannonStateMachine): Promise<void> {
       time += ƒ.Loop.timeFrameGame / 1000;
 
-      if (time > 0.3) {
+      if (time > 0.3 && state == Game.PLAY) {
         let shoot = new CannonShoot("Shoot", cannon.mtxLocal.translation);
         graph.addChild(shoot);
         let direction: ƒ.Vector3 = cannon.mtxLocal.getY();

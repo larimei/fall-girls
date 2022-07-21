@@ -35,6 +35,7 @@
         function init(_event) {
           dialog = document.getElementById("dialog");
           load = document.getElementById("load");
+          vui = document.getElementById("vui");
           button = document.getElementById("run");
           button.addEventListener("click", function (_event) {
             // @ts-ignore until HTMLDialog is implemented by all browsers and available in dom.d.ts
@@ -42,6 +43,7 @@
             load.style.display = "block";
             setTimeout(() => {
               load.style.display = "none";
+              vui.style.display = "block";
             }, 3000);
             startInteractiveViewport();
             localStorage.setItem("gameType", "run");
@@ -54,6 +56,7 @@
             load.style.display = "block";
             setTimeout(() => {
               load.style.display = "none";
+              vui.style.display = "block";
             }, 1000);
             startInteractiveViewport();
             localStorage.setItem("gameType", "survive");
@@ -110,7 +113,12 @@
   </head>
   <body>
     <!--Dialog shown at startup only-->
-    <div id="load"></div>
+    <div id="load">
+</div>
+    <div id="win">
+</div>
+    <div id="loose">
+</div>
     <div id="dialog">
       <h1>Fall Girls</h1>
       <div class="grid">
@@ -136,22 +144,15 @@
       </div>
     </div>
     <!--Canvas for FUDGE to render to-->
-    <canvas class="fullscreen"> </canvas>
-  
+    <canvas class="fullscreen"> </canvas> 
+
     <div id="vui">
-        <div class="element">
-          <span>Time:</span>
-          <input type="number" key="time" value="0" disabled="" />
-        </div>
+      <div class="element">
+        <span>Time:</span>
+        <input type="number" key="time" value="0" disabled="" />
       </div>
-
-
-
-
-
-
-
-
+    </div>
+  
 
 
 

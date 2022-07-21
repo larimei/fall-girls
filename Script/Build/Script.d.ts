@@ -59,7 +59,13 @@ declare namespace Script {
     import ƒ = FudgeCore;
     class GameState extends ƒ.Mutable {
         time: string;
+        loose: boolean;
+        win: boolean;
+        winImage: HTMLElement;
+        looseImage: HTMLElement;
         constructor();
+        winGame(audio: ƒ.ComponentAudio): void;
+        looseGame(audio: ƒ.ComponentAudio): void;
         protected reduceMutator(_mutator: ƒ.Mutator): void;
     }
 }

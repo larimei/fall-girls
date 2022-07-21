@@ -131,7 +131,7 @@ var Script;
         }
         static async shoot(_machine) {
             time += ƒ.Loop.timeFrameGame / 1000;
-            if (time > 1) {
+            if (time > 1 && Script.state == Script.Game.PLAY) {
                 let shoot = new Script.CannonShoot("Shoot", Script.cannon.mtxLocal.translation);
                 Script.graph.addChild(shoot);
                 let direction = Script.cannon.mtxLocal.getY();
@@ -146,7 +146,7 @@ var Script;
         }
         static async shootAgressive(_machine) {
             time += ƒ.Loop.timeFrameGame / 1000;
-            if (time > 0.3) {
+            if (time > 0.3 && Script.state == Script.Game.PLAY) {
                 let shoot = new Script.CannonShoot("Shoot", Script.cannon.mtxLocal.translation);
                 Script.graph.addChild(shoot);
                 let direction = Script.cannon.mtxLocal.getY();
@@ -254,8 +254,24 @@ var Script;
         constructor() {
             super();
             this.time = "";
+            this.loose = false;
+            this.win = false;
             const domVui = document.querySelector("div#vui");
+            this.winImage = document.getElementById("win");
+            this.looseImage = document.getElementById("loose");
             console.log("Vui-Controller", new ƒUi.Controller(this, domVui));
+        }
+        winGame(audio) {
+            this.winImage.style.display = "block";
+            if (!audio.isPlaying) {
+                audio.play(true);
+            }
+        }
+        looseGame(audio) {
+            this.looseImage.style.display = "block";
+            if (!audio.isPlaying) {
+                audio.play(true);
+            }
         }
         reduceMutator(_mutator) { }
     }
@@ -288,6 +304,9 @@ var Script;
     let config;
     let jumpSound;
     let winSound;
+    let winTheme;
+    let looseTheme;
+    let theme;
     async function start(_event) {
         Script.viewport = _event.detail;
         Script.graph = Script.viewport.getBranch();
@@ -319,21 +338,49 @@ var Script;
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
         Script.initAnim();
         document.body.addEventListener("change", Script.initAnim);
-        let theme = Script.graph
+        theme = Script.graph
             .getChildrenByName("sounds")[0]
-            .getChildrenByName("theme_play")[0];
-        let cmpAudio = theme.getComponent(ƒ.ComponentAudio);
-        cmpAudio.play(true);
+            .getChildrenByName("theme_play")[0]
+            .getComponent(ƒ.ComponentAudio);
+        theme.play(true);
         winSound = Script.graph
             .getChildrenByName("sounds")[0]
             .getChildrenByName("woohoho")[0]
+            .getComponent(ƒ.ComponentAudio);
+        winTheme = Script.graph
+            .getChildrenByName("sounds")[0]
+            .getChildrenByName("win_theme")[0]
+            .getComponent(ƒ.ComponentAudio);
+        looseTheme = Script.graph
+            .getChildrenByName("sounds")[0]
+            .getChildrenByName("loose_theme")[0]
             .getComponent(ƒ.ComponentAudio);
         let hitSound = Script.graph
             .getChildrenByName("sounds")[0]
             .getChildrenByName("hit")[0]
             .getComponent(ƒ.ComponentAudio);
         collider.addEventListener("ColliderEnteredCollision" /* COLLISION_ENTER */, (_event) => {
-            hitSound.play(true);
+            if (_event.cmpRigidbody.node.name == "shoot" ||
+                _event.cmpRigidbody.node.name == "child") {
+                hitSound.play(true);
+            }
+        });
+        let winTrigger = Script.graph
+            .getChildrenByName("levels")[0]
+            .getChildrenByName("run")[0]
+            .getChildrenByName("goalTrigger")[0]
+            .getComponent(ƒ.ComponentRigidbody);
+        winTrigger.addEventListener("TriggerEnteredCollision" /* TRIGGER_ENTER */, (_event) => {
+            theme.play(false);
+            showWinScreen();
+        });
+        let looseTrigger = Script.graph
+            .getChildrenByName("levels")[0]
+            .getChildrenByName("fallTrigger")[0]
+            .getComponent(ƒ.ComponentRigidbody);
+        looseTrigger.addEventListener("TriggerEnteredCollision" /* TRIGGER_ENTER */, (_event) => {
+            theme.play(false);
+            showLooseScreen();
         });
     }
     function update(_event) {
@@ -341,8 +388,10 @@ var Script;
         if (Script.state == Game.OVER || Script.state == Game.WIN || Script.state == Game.LOOSE)
             return;
         time += ƒ.Loop.timeFrameGame / 1000;
-        if (time > config.surviveTime && gameType == "survive")
+        if (time > config.surviveTime && gameType == "survive") {
+            theme.play(false);
             showWinScreen();
+        }
         gameState.time = time.toFixed(0);
         controlWalk();
         checkIfGrounded();
@@ -386,10 +435,12 @@ var Script;
         console.log("You are too damn good at this game!!!!");
         Script.state = Game.WIN;
         winSound.play(true);
+        gameState.winGame(winTheme);
     }
     function showLooseScreen() {
         console.log("You are too damn bad at this game!!!!");
         Script.state = Game.LOOSE;
+        gameState.looseGame(looseTheme);
     }
     function removeOtherLevel() {
         const levels = Script.graph.getChildrenByName("levels")[0];
