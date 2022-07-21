@@ -22,6 +22,7 @@ namespace Script {
       this.winImage.style.display = "block";
       if (!audio.isPlaying) {
          audio.play(true);
+         setTimeout(() => {location.reload()}, 5000)
       }
     }
 
@@ -29,7 +30,9 @@ namespace Script {
       this.looseImage.style.display = "block";
       if (!audio.isPlaying) {
         audio.play(true);
+        setTimeout(() => {location.reload()}, 3000)
      }
+
     }
 
     protected reduceMutator(_mutator: ƒ.Mutator): void {}

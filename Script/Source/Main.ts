@@ -72,6 +72,7 @@ namespace Script {
     camera = avatar.getChild(0).getComponent(ƒ.ComponentCamera);
     camera.mtxPivot.translateZ(-10);
     camera.mtxPivot.translateY(1);
+    camera.clrBackground = ƒ.Color.CSS("#65b3ff");
 
     viewport.camera = camera;
     let canvas: HTMLCanvasElement = viewport.getCanvas();
@@ -89,7 +90,7 @@ namespace Script {
 
     document.addEventListener("keydown", hndKeyDown);
 
-    viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.JOINTS_AND_COLLIDER;
+    //viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.JOINTS_AND_COLLIDER;
     ƒ.Debug.info(avatar);
     ƒ.Loop.addEventListener(ƒ.EVENT.LOOP_FRAME, update);
     ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
@@ -135,19 +136,21 @@ namespace Script {
       }
     );
 
-    let winTrigger = graph
-      .getChildrenByName("levels")[0]
-      .getChildrenByName("run")[0]
-      .getChildrenByName("goalTrigger")[0]
-      .getComponent(ƒ.ComponentRigidbody);
+    if (gameType == "run") {
+      let winTrigger = graph
+        .getChildrenByName("levels")[0]
+        .getChildrenByName("run")[0]
+        .getChildrenByName("goalTrigger")[0]
+        .getComponent(ƒ.ComponentRigidbody);
 
-    winTrigger.addEventListener(
-      ƒ.EVENT_PHYSICS.TRIGGER_ENTER,
-      (_event: ƒ.EventPhysics) => {
-        theme.play(false);
-        showWinScreen();
-      }
-    );
+      winTrigger.addEventListener(
+        ƒ.EVENT_PHYSICS.TRIGGER_ENTER,
+        (_event: ƒ.EventPhysics) => {
+          theme.play(false);
+          showWinScreen();
+        }
+      );
+    }
 
     let looseTrigger = graph
       .getChildrenByName("levels")[0]
@@ -157,8 +160,10 @@ namespace Script {
     looseTrigger.addEventListener(
       ƒ.EVENT_PHYSICS.TRIGGER_ENTER,
       (_event: ƒ.EventPhysics) => {
-        theme.play(false);
-        showLooseScreen();
+        if (_event.cmpRigidbody.node.name == "avatar") {
+          theme.play(false);
+          showLooseScreen();
+        }
       }
     );
   }

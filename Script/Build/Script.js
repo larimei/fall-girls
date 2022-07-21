@@ -265,12 +265,14 @@ var Script;
             this.winImage.style.display = "block";
             if (!audio.isPlaying) {
                 audio.play(true);
+                setTimeout(() => { location.reload(); }, 5000);
             }
         }
         looseGame(audio) {
             this.looseImage.style.display = "block";
             if (!audio.isPlaying) {
                 audio.play(true);
+                setTimeout(() => { location.reload(); }, 3000);
             }
         }
         reduceMutator(_mutator) { }
@@ -321,6 +323,7 @@ var Script;
         camera = Script.avatar.getChild(0).getComponent(ƒ.ComponentCamera);
         camera.mtxPivot.translateZ(-10);
         camera.mtxPivot.translateY(1);
+        camera.clrBackground = ƒ.Color.CSS("#65b3ff");
         Script.viewport.camera = camera;
         let canvas = Script.viewport.getCanvas();
         canvas.addEventListener("pointermove", hndPointerMove);
@@ -332,7 +335,7 @@ var Script;
         const response = await fetch("config.json");
         config = await response.json();
         document.addEventListener("keydown", hndKeyDown);
-        Script.viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.JOINTS_AND_COLLIDER;
+        //viewport.physicsDebugMode = ƒ.PHYSICS_DEBUGMODE.JOINTS_AND_COLLIDER;
         ƒ.Debug.info(Script.avatar);
         ƒ.Loop.addEventListener("loopFrame" /* LOOP_FRAME */, update);
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
@@ -365,22 +368,26 @@ var Script;
                 hitSound.play(true);
             }
         });
-        let winTrigger = Script.graph
-            .getChildrenByName("levels")[0]
-            .getChildrenByName("run")[0]
-            .getChildrenByName("goalTrigger")[0]
-            .getComponent(ƒ.ComponentRigidbody);
-        winTrigger.addEventListener("TriggerEnteredCollision" /* TRIGGER_ENTER */, (_event) => {
-            theme.play(false);
-            showWinScreen();
-        });
+        if (gameType == "run") {
+            let winTrigger = Script.graph
+                .getChildrenByName("levels")[0]
+                .getChildrenByName("run")[0]
+                .getChildrenByName("goalTrigger")[0]
+                .getComponent(ƒ.ComponentRigidbody);
+            winTrigger.addEventListener("TriggerEnteredCollision" /* TRIGGER_ENTER */, (_event) => {
+                theme.play(false);
+                showWinScreen();
+            });
+        }
         let looseTrigger = Script.graph
             .getChildrenByName("levels")[0]
             .getChildrenByName("fallTrigger")[0]
             .getComponent(ƒ.ComponentRigidbody);
         looseTrigger.addEventListener("TriggerEnteredCollision" /* TRIGGER_ENTER */, (_event) => {
-            theme.play(false);
-            showLooseScreen();
+            if (_event.cmpRigidbody.node.name == "avatar") {
+                theme.play(false);
+                showLooseScreen();
+            }
         });
     }
     function update(_event) {
