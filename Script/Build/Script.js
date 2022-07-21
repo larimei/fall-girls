@@ -462,6 +462,30 @@ var Script;
 (function (Script) {
     var ƒ = FudgeCore;
     ƒ.Project.registerScriptNamespace(Script); // Register the namespace to FUDGE for serialization
+    class PoleRotation extends ƒ.ComponentScript {
+        constructor() {
+            super();
+            // Don't start when running in editor
+            if (ƒ.Project.mode == ƒ.MODE.EDITOR)
+                return;
+            ƒ.Time.game.setTimer(10, 0, this.hndTimer.bind(this));
+        }
+        hndTimer(_event) {
+            if (this.isGettingFaster && this.rotationVelocity < this.startRotationVelocity * 500) {
+                this.rotationVelocity = Number(this.rotationVelocity) + this.startRotationVelocity / 500;
+                ƒ.Debug.info(this.rotationVelocity);
+            }
+            this.node.mtxLocal.rotate(new ƒ.Vector3(0, 0, this.rotationVelocity / 100));
+        }
+    }
+    // Register the script as component for use in the editor via drag&drop
+    PoleRotation.iSubclass = ƒ.Component.registerSubclass(PoleRotation);
+    Script.PoleRotation = PoleRotation;
+})(Script || (Script = {}));
+var Script;
+(function (Script) {
+    var ƒ = FudgeCore;
+    ƒ.Project.registerScriptNamespace(Script); // Register the namespace to FUDGE for serialization
     class PoleRotationBottom extends ƒ.ComponentScript {
         constructor() {
             super();
